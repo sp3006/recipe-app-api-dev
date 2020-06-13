@@ -1,2 +1,16 @@
 FROM python:3.7-alpine
-AINTAINER sushant.paricharak@gmail.com
+MAINTAINER sushant.paricharak@gmail.com 
+
+ENV PYTHONUNBUFFERED 1
+
+COPY ./requirements.txt /requirements.txt
+RUN pip install -r requirements.txt
+
+RUN mkdir /app
+WORKDIR /app
+COPY ./app /app
+
+RUN aduser -D verticabot
+USER verticabot
+
+
